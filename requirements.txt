@@ -10,3 +10,7 @@ onnxscript==0.7.0
 onnx==1.21.0
 albumentations==2.0.8
 onnxruntime==1.23.2
+numpy==1.26.4
+opencv-python-headless==4.11.0.86
+paddleocr==2.9.1
+paddlepaddle==2.6.2
