@@ -8,7 +8,7 @@ torch==2.11.0
 torchvision==0.26.0
 onnxscript==0.7.0
 onnx==1.21.0
-albumentations==2.0.8
+albumentations==1.4.10
 onnxruntime==1.23.2
 numpy==1.26.4
 opencv-python-headless==4.11.0.86
