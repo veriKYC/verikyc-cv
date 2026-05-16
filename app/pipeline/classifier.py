@@ -5,8 +5,13 @@ from app.config.settings import settings
 
 CLASS_NAMES = {0: "CHEQUE", 1: "PAN"}
 
-# Load model (do this once at module level, not per request):
-session = ort.InferenceSession(settings.model_path)
+_session = None
+
+def _get_session():                                                                                                                                                            
+    global _session                                                                                                                                                            
+    if _session is None:                                                                                                                                                       
+        _session = ort.InferenceSession(settings.model_path)                                                                                                               
+    return _session
 
 # Preprocess function:
 def preprocess(image: Image.Image) -> np.ndarray:
@@ -20,7 +25,7 @@ def preprocess(image: Image.Image) -> np.ndarray:
 # Predict function:
 def classify(image: Image.Image) -> dict:
     input_tensor = preprocess(image)
-    outputs = session.run(None, {"image": input_tensor})
+    outputs = _get_session().run(None, {"image": input_tensor})
     probabilities = softmax(outputs[0][0])
     predicted_idx = np.argmax(probabilities)
     return {
